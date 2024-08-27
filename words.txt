@@ -1,5 +1,6 @@
-dog собака
-cat кошка
-airplane самолет
-helicopter вертолет
-lithium литий
+dog|собака|0
+cat|кошка|1
+airplane|самолет|3
+helicopter|вертолет|1
+lithium|литий|2
+thank you|спасибо|0
