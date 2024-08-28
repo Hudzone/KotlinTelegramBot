@@ -9,7 +9,8 @@ fun main() {
 
     wordsCollection.forEach { line ->
         val binaryList = line.split("|")
-        val word = Word(binaryList[0], binaryList[1], binaryList[2] ?: 0)
+        val correctAnswerCounter = if (binaryList.size > 2) binaryList[2].toIntOrNull() ?: 0 else 0
+        val word = Word(binaryList[0], binaryList[1], correctAnswerCounter)
         dictionary.add(word)
     }
 
@@ -22,7 +23,7 @@ fun main() {
 data class Word(
     val word: String,
     val translation: String,
-    private var correctAnswerCounter: Comparable<*> = 0,
+    var correctAnswerCounter: Int = 0,
 ) {
     override fun toString(): String {
         return "Слово: $word\nПеревод: $translation\nКоличество верных ответов: $correctAnswerCounter\n"
