@@ -14,9 +14,7 @@ fun main() {
         dictionary.add(word)
     }
 
-    for (word in dictionary) {
-        println(word)
-    }
+    mainMenu(dictionary)
 
 }
 
@@ -28,4 +26,48 @@ data class Word(
     override fun toString(): String {
         return "Слово: $word\nПеревод: $translation\nКоличество верных ответов: $correctAnswerCounter\n"
     }
+}
+
+fun mainMenu(dictionary: MutableList<Word>) {
+
+    while (true) {
+
+        println(
+            """
+            1 - Учить слова
+            2 - Статистика
+            0 - Выход
+        """.trimIndent()
+        )
+
+        print("Ваш выбор: ")
+        val userInput: Int = try {
+            readln().toInt()
+        } catch (e: NumberFormatException) {
+            println("Неверный ввод")
+            continue
+        }
+
+        when (userInput) {
+            1 -> println("Тут будет функционал тренажера")
+
+            2 -> {
+                val knownWords: List<Word> = dictionary.filter { it.correctAnswerCounter >= 3 }
+                val percent = (knownWords.size * 100) / dictionary.size
+                println("Выучено ${knownWords.size} из ${dictionary.size} слов | $percent%")
+            }
+
+            0 -> {
+                println("Завершение программы")
+                break
+            }
+
+            else -> {
+                println("Неверный ввод")
+                continue
+            }
+        }
+
+    }
+
 }
