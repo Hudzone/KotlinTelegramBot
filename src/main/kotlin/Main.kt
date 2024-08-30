@@ -14,7 +14,7 @@ fun main() {
         dictionary.add(word)
     }
 
-    mainMenu(dictionary)
+    showMainMenu(dictionary)
 
 }
 
@@ -28,10 +28,9 @@ data class Word(
     }
 }
 
-fun mainMenu(dictionary: MutableList<Word>) {
+fun showMainMenu(dictionary: MutableList<Word>) {
 
     while (true) {
-
         println(
             """
             1 - Учить слова
@@ -67,7 +66,5 @@ fun mainMenu(dictionary: MutableList<Word>) {
                 continue
             }
         }
-
     }
-
 }
