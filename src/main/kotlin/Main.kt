@@ -2,7 +2,7 @@ import java.io.File
 
 fun main() {
 
-    mainMenu()
+    showMainMenu()
 
     val dictionary: MutableList<Word> = mutableListOf()
 
@@ -32,10 +32,8 @@ data class Word(
     }
 }
 
-fun mainMenu() {
-
+fun showMainMenu() {
     while (true) {
-
         println(
             """
             1 - Учить слова
@@ -65,7 +63,5 @@ fun mainMenu() {
                 continue
             }
         }
-
     }
-
 }
