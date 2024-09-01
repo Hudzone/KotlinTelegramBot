@@ -2,6 +2,8 @@ import java.io.File
 
 fun main() {
 
+    showMainMenu()
+
     val dictionary: MutableList<Word> = mutableListOf()
 
     val words: File = File("words.txt")
