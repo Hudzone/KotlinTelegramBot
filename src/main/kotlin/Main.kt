@@ -99,10 +99,7 @@ fun showMainMenu(dictionary: MutableList<Word>) {
                     } else {
                         println("Ответ неверный!")
                     }
-
                 }
-
-
             }
 
             2 -> {
