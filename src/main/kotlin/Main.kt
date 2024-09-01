@@ -2,8 +2,6 @@ import java.io.File
 
 fun main() {
 
-    showMainMenu()
-
     val dictionary: MutableList<Word> = mutableListOf()
 
     val words: File = File("words.txt")
@@ -16,9 +14,7 @@ fun main() {
         dictionary.add(word)
     }
 
-    for (word in dictionary) {
-        println(word)
-    }
+    showMainMenu(dictionary)
 
 }
 
@@ -32,7 +28,8 @@ data class Word(
     }
 }
 
-fun showMainMenu() {
+fun showMainMenu(dictionary: MutableList<Word>) {
+
     while (true) {
         println(
             """
@@ -52,7 +49,13 @@ fun showMainMenu() {
 
         when (userInput) {
             1 -> println("Тут будет функционал тренажера")
-            2 -> println("Тут будет статистика")
+
+            2 -> {
+                val knownWords: List<Word> = dictionary.filter { it.correctAnswerCounter >= 3 }
+                val percent = (knownWords.size * 100) / dictionary.size
+                println("Выучено ${knownWords.size} из ${dictionary.size} слов | $percent%")
+            }
+
             0 -> {
                 println("Завершение программы")
                 break
