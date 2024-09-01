@@ -1,6 +1,10 @@
 dog|собака|0
-cat|кошка|
-airplane|самолет|3
-helicopter|вертолет|1
-lithium|литий|2
+cat|кошка|0
+airplane|самолет|0
+helicopter|вертолет|0
+lithium|литий|0
 thank you|спасибо|0
+tea|чай|0
+cofee|кофе|0
+cafe|кафе|0
+engine|двигатель|0

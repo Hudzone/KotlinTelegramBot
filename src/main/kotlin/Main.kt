@@ -48,7 +48,62 @@ fun showMainMenu(dictionary: MutableList<Word>) {
         }
 
         when (userInput) {
-            1 -> println("Тут будет функционал тренажера")
+            1 -> {
+
+                while (true) {
+
+                    val rightWordIndex = (0..3).random()
+
+                    val wordsToLearn: MutableList<Word> = mutableListOf()
+
+                    dictionary.forEach { word ->
+                        if (word.correctAnswerCounter < 3) {
+                            wordsToLearn.add(word)
+                        }
+                    }
+
+                    if (wordsToLearn.isEmpty()) {
+                        println("Все слова выучены!")
+                        break
+                    }
+
+                    val shuffledList: List<Word> = wordsToLearn.shuffled()
+                    val chosenWords: List<Word> = shuffledList.take(4)
+                    val rightWord: Word = chosenWords[rightWordIndex]
+
+                    println("Как будет по английски: ${rightWord.translation}")
+
+                    var ind = 0
+                    chosenWords.forEach { word ->
+                        println("${++ind}. ${word.word}")
+                    }
+
+                    print("Правильный ответ (для выхода введите 0): ")
+
+                    val currentInput: Int = try {
+                        readln().toInt()
+                    } catch (e: NumberFormatException) {
+                        println("Неверный ввод")
+                        continue
+                    }
+
+                    if (currentInput == 0) {
+                        break
+                    }
+
+                    val answer: Word = chosenWords[currentInput - 1]
+
+                    if (answer.translation == rightWord.translation) {
+                        rightWord.correctAnswerCounter++
+                        println("Ответ верный!")
+                    } else {
+                        println("Ответ неверный!")
+                    }
+
+                }
+
+
+            }
 
             2 -> {
                 val knownWords: List<Word> = dictionary.filter { it.correctAnswerCounter >= 3 }
