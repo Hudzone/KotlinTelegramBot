@@ -50,11 +50,12 @@ fun showMainMenu(dictionary: MutableList<Word>) {
         when (userInput) {
             1 -> {
 
+                val wordsToLearn: MutableList<Word> = mutableListOf()
+
                 while (true) {
 
                     val rightWordIndex = (0..3).random()
-
-                    val wordsToLearn: MutableList<Word> = mutableListOf()
+                    wordsToLearn.clear()
 
                     dictionary.forEach { word ->
                         if (word.correctAnswerCounter < 3) {
@@ -73,9 +74,8 @@ fun showMainMenu(dictionary: MutableList<Word>) {
 
                     println("Как будет по английски: ${rightWord.translation}")
 
-                    var ind = 0
-                    chosenWords.forEach { word ->
-                        println("${++ind}. ${word.word}")
+                    chosenWords.forEachIndexed { counter, word ->
+                        println("${counter + 1}. ${word.word}")
                     }
 
                     print("Правильный ответ (для выхода введите 0): ")
