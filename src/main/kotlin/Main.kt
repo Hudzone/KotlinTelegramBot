@@ -77,8 +77,9 @@ fun showMainMenu(dictionary: MutableList<Word>) {
                     chosenWords.forEachIndexed { counter, word ->
                         println("${counter + 1}. ${word.word}")
                     }
+                    println("0. Меню")
 
-                    print("Правильный ответ (для выхода введите 0): ")
+                    print("Ваш ответ: ")
 
                     val currentInput: Int = try {
                         readln().toInt()
@@ -96,8 +97,9 @@ fun showMainMenu(dictionary: MutableList<Word>) {
                     if (answer.translation == rightWord.translation) {
                         rightWord.correctAnswerCounter++
                         println("Ответ верный!")
+                        saveToFile(dictionary)
                     } else {
-                        println("Ответ неверный!")
+                        println("Ответ неверный! Правильный ответ - ${rightWord.word}")
                     }
                 }
             }
@@ -119,4 +121,12 @@ fun showMainMenu(dictionary: MutableList<Word>) {
             }
         }
     }
+}
+
+fun saveToFile(dictionary: MutableList<Word>) {
+
+    val updatedFile = File("words.txt")
+    val lines = dictionary.map { "${it.word}|${it.translation}|${it.correctAnswerCounter}" }
+    updatedFile.writeText(lines.joinToString("\n"))
+
 }
